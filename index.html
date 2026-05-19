@@ -889,38 +889,37 @@
         'Крепкий алкоголь: ' + (data.strongAlcohol || 'не выбрано') + (data.strongAlcoholOther ? ' — ' + data.strongAlcoholOther : ''),
         'Слабоалкогольные напитки: ' + (data.lightAlcohol || 'не выбрано') + (data.lightAlcoholOther ? ' — ' + data.lightAlcoholOther : ''),
         'Неалкогольные напитки: ' + (data.softDrinks || 'не выбрано') + (data.softDrinksOther ? ' — ' + data.softDrinksOther : '')
-      ].join('
-');
+      ].join('\n');
+    }
+
+    function payloadToFormBody(data) {
+      const body = new URLSearchParams();
+      Object.entries(data).forEach(([key, value]) => {
+        body.append(key, value || '');
+      });
+      return body;
     }
 
     form.addEventListener('submit', async function(event) {
       event.preventDefault();
 
       const data = buildPayload();
-      let sentRemote = false;
+      statusBox.style.display = 'block';
+      statusBox.textContent = 'Отправляем анкету...';
 
       try {
         await fetch(FORM_ENDPOINT, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(data)
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: payloadToFormBody(data)
         });
-        sentRemote = true;
+
+        statusBox.textContent = 'Спасибо! Анкета отправлена.\n\n' + answerText(data);
+        form.reset();
       } catch (error) {
-        sentRemote = false;
+        statusBox.textContent = 'Анкета не отправилась. Проверьте интернет или сообщите организаторам.\n\n' + answerText(data);
       }
-
-      statusBox.style.display = 'block';
-      statusBox.textContent = sentRemote
-        ? 'Спасибо! Анкета отправлена.
-
-' + answerText(data)
-        : 'Анкета не отправилась. Попробуйте ещё раз или сообщите организаторам.
-
-' + answerText(data);
-
-      if (sentRemote) form.reset();
     });
   </script>
 </body>
