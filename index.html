@@ -662,7 +662,8 @@
             <p class="menu-intro">Пожалуйста, заполните анкету до мероприятия. Так мы сможем точнее подготовить посадку, меню и напитки.</p>
           </div>
 
-          <form class="survey" id="rsvpForm">
+          <form class="survey" id="rsvpForm" action="https://script.google.com/macros/s/AKfycbz5bNKzk8F67YlnlBDIARxqEipFIlys3WvDG_aKOC3b1E5SADqpTApTg4AfTx3VX370/exec" method="POST" target="hiddenSubmitFrame">
+            <input type="hidden" id="createdAt" name="createdAt" value="" />
             <div class="field full">
               <label for="guestName">Как вас зовут?</label>
               <input id="guestName" name="guestName" type="text" placeholder="Введите имя и фамилию" required />
@@ -749,6 +750,7 @@
 
             <div class="status" id="formStatus"></div>
           </form>
+          <iframe name="hiddenSubmitFrame" style="display:none"></iframe>
         </div>
       </div>
     </section>
@@ -815,7 +817,6 @@
 
   <script>
     const WEDDING_DATE = new Date(2026, 6, 29, 13, 0, 0);
-    const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzgFwcZM8YDGviA8b-B97DE0g4lz31_kxRJNL2pcNVLTQni01a3f7q-ffyP5vhbUJz1/exec';
 
     const countDays = document.getElementById('countDays');
     const countHours = document.getElementById('countHours');
@@ -825,8 +826,7 @@
     function updateCountdown() {
       if (!countDays || !countHours || !countMinutes || !countSeconds) return;
 
-      const now = new Date();
-      const diff = WEDDING_DATE.getTime() - now.getTime();
+      const diff = WEDDING_DATE.getTime() - new Date().getTime();
 
       if (diff <= 0) {
         countDays.textContent = '0';
@@ -837,15 +837,10 @@
       }
 
       const totalSeconds = Math.floor(diff / 1000);
-      const days = Math.floor(totalSeconds / 86400);
-      const hours = Math.floor((totalSeconds % 86400) / 3600);
-      const minutes = Math.floor((totalSeconds % 3600) / 60);
-      const seconds = totalSeconds % 60;
-
-      countDays.textContent = days;
-      countHours.textContent = String(hours).padStart(2, '0');
-      countMinutes.textContent = String(minutes).padStart(2, '0');
-      countSeconds.textContent = String(seconds).padStart(2, '0');
+      countDays.textContent = Math.floor(totalSeconds / 86400);
+      countHours.textContent = String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, '0');
+      countMinutes.textContent = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+      countSeconds.textContent = String(totalSeconds % 60).padStart(2, '0');
     }
 
     updateCountdown();
@@ -853,73 +848,17 @@
 
     const form = document.getElementById('rsvpForm');
     const statusBox = document.getElementById('formStatus');
+    const createdAtInput = document.getElementById('createdAt');
 
-    function checkedValues(name) {
-      return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(input => input.value);
-    }
-
-    function clean(value) {
-      return String(value || '').trim();
-    }
-
-    function buildPayload() {
-      const formData = new FormData(form);
-
-      return {
-        createdAt: new Date().toLocaleString('ru-RU'),
-        guestName: clean(formData.get('guestName')),
-        attendance: formData.get('attendance') || '',
-        hotDish: formData.get('hotDish') || '',
-        hotDishOther: clean(formData.get('hotDishOther')),
-        strongAlcohol: checkedValues('strongAlcohol').join(', '),
-        strongAlcoholOther: clean(formData.get('strongAlcoholOther')),
-        lightAlcohol: checkedValues('lightAlcohol').join(', '),
-        lightAlcoholOther: clean(formData.get('lightAlcoholOther')),
-        softDrinks: checkedValues('softDrinks').join(', '),
-        softDrinksOther: clean(formData.get('softDrinksOther'))
-      };
-    }
-
-    function answerText(data) {
-      return [
-        'Анкета свадебного приглашения',
-        'Имя: ' + data.guestName,
-        'Присутствие: ' + data.attendance,
-        'Горячее: ' + data.hotDish + (data.hotDishOther ? ' — ' + data.hotDishOther : ''),
-        'Крепкий алкоголь: ' + (data.strongAlcohol || 'не выбрано') + (data.strongAlcoholOther ? ' — ' + data.strongAlcoholOther : ''),
-        'Слабоалкогольные напитки: ' + (data.lightAlcohol || 'не выбрано') + (data.lightAlcoholOther ? ' — ' + data.lightAlcoholOther : ''),
-        'Неалкогольные напитки: ' + (data.softDrinks || 'не выбрано') + (data.softDrinksOther ? ' — ' + data.softDrinksOther : '')
-      ].join('\n');
-    }
-
-    function payloadToFormBody(data) {
-      const body = new URLSearchParams();
-      Object.entries(data).forEach(([key, value]) => {
-        body.append(key, value || '');
-      });
-      return body;
-    }
-
-    form.addEventListener('submit', async function(event) {
-      event.preventDefault();
-
-      const data = buildPayload();
+    form.addEventListener('submit', function() {
+      createdAtInput.value = new Date().toLocaleString('ru-RU');
       statusBox.style.display = 'block';
       statusBox.textContent = 'Отправляем анкету...';
 
-      try {
-        await fetch(FORM_ENDPOINT, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-          body: payloadToFormBody(data)
-        });
-
-        statusBox.textContent = 'Спасибо! Анкета отправлена.\n\n' + answerText(data);
+      setTimeout(function() {
+        statusBox.textContent = 'Спасибо! Анкета отправлена. Если вы хотите изменить ответ, заполните форму ещё раз.';
         form.reset();
-      } catch (error) {
-        statusBox.textContent = 'Анкета не отправилась. Проверьте интернет или сообщите организаторам.\n\n' + answerText(data);
-      }
+      }, 1200);
     });
   </script>
 </body>
