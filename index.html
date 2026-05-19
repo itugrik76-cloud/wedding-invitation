@@ -889,7 +889,8 @@
         'Крепкий алкоголь: ' + (data.strongAlcohol || 'не выбрано') + (data.strongAlcoholOther ? ' — ' + data.strongAlcoholOther : ''),
         'Слабоалкогольные напитки: ' + (data.lightAlcohol || 'не выбрано') + (data.lightAlcoholOther ? ' — ' + data.lightAlcoholOther : ''),
         'Неалкогольные напитки: ' + (data.softDrinks || 'не выбрано') + (data.softDrinksOther ? ' — ' + data.softDrinksOther : '')
-      ].join('\n');
+      ].join('
+');
     }
 
     form.addEventListener('submit', async function(event) {
@@ -912,8 +913,12 @@
 
       statusBox.style.display = 'block';
       statusBox.textContent = sentRemote
-        ? 'Спасибо! Анкета отправлена.\n\n' + answerText(data)
-        : 'Анкета не отправилась. Попробуйте ещё раз или сообщите организаторам.\n\n' + answerText(data);
+        ? 'Спасибо! Анкета отправлена.
+
+' + answerText(data)
+        : 'Анкета не отправилась. Попробуйте ещё раз или сообщите организаторам.
+
+' + answerText(data);
 
       if (sentRemote) form.reset();
     });
