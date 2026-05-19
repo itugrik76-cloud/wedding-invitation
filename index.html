@@ -21,6 +21,7 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       color: var(--brown);
@@ -28,118 +29,561 @@
       font-family: Montserrat, Arial, sans-serif;
       line-height: 1.6;
     }
+
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
+
     .page { overflow: hidden; min-height: 100vh; position: relative; }
-    .grain { pointer-events: none; position: fixed; inset: 0; opacity: 0.16; background-image: radial-gradient(rgba(80,54,30,.08) .7px, transparent .7px); background-size: 28px 28px; z-index: 1; }
 
-    .hero { position: relative; min-height: 100svh; padding: clamp(18px, 3vw, 34px); isolation: isolate; display: grid; place-items: center; }
-    .hero::before { content: ""; position: absolute; inset: 18px; border: 1px solid rgba(230,201,146,.9); z-index: 0; }
-    .hero-shell { position: relative; z-index: 2; width: min(1480px, 94vw); display: grid; grid-template-columns: minmax(360px, .95fr) minmax(440px, 1fr); gap: clamp(22px, 3vw, 42px); align-items: center; }
-    .hero-photo { min-height: clamp(460px, 72vh, 760px); border-radius: 32px; overflow: hidden; border: 1px solid rgba(199,164,106,.44); box-shadow: var(--shadow); background: #e8d8c3; position: relative; }
-    .hero-photo img { width: 100%; height: 100%; min-height: inherit; object-fit: cover; object-position: center center; filter: saturate(.92) contrast(.98) brightness(1.03); }
-    .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(44,31,24,.12), rgba(255,246,232,.22)); pointer-events: none; }
-    .hero-card { padding: clamp(32px, 5vw, 76px); border-radius: 32px; border: 1px solid rgba(199,164,106,.36); background: linear-gradient(145deg, rgba(255,250,242,.86), rgba(255,250,242,.62)); box-shadow: var(--shadow); backdrop-filter: blur(8px); text-align: center; }
-    .ornament { display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: 22px; color: var(--gold-dark); }
-    .ornament::before, .ornament::after { content: ""; width: min(150px, 20vw); height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-    .names { margin: 0 0 26px; font-family: "Great Vibes", cursive; font-size: clamp(48px, 5.6vw, 86px); line-height: 1; color: #6a4a32; }
-    h1 { margin: 0; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(50px, 7vw, 112px); font-weight: 500; line-height: .92; letter-spacing: -.04em; color: #2f2119; }
-    h1 span { display: block; margin-top: 10px; font-size: clamp(36px, 4.7vw, 70px); font-weight: 400; letter-spacing: -.02em; }
-    .script { margin: 30px auto 8px; max-width: 760px; font-family: "Great Vibes", cursive; font-size: clamp(32px, 3.8vw, 54px); line-height: 1.1; color: #5b4031; }
-    .date-line { margin-top: 30px; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(30px, 3.2vw, 48px); color: #3c2b21; letter-spacing: .02em; }
+    .grain {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      opacity: 0.16;
+      background-image: radial-gradient(rgba(80, 54, 30, 0.08) 0.7px, transparent 0.7px);
+      background-size: 28px 28px;
+      z-index: 1;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      padding: clamp(18px, 3vw, 34px);
+      isolation: isolate;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(230, 201, 146, 0.9);
+      z-index: 0;
+    }
+
+    .hero-shell {
+      position: relative;
+      z-index: 2;
+      width: min(1480px, 94vw);
+      display: grid;
+      grid-template-columns: minmax(360px, 0.95fr) minmax(440px, 1fr);
+      gap: clamp(22px, 3vw, 42px);
+      align-items: center;
+    }
+
+    .hero-photo {
+      min-height: clamp(460px, 72vh, 760px);
+      border-radius: 32px;
+      overflow: hidden;
+      border: 1px solid rgba(199, 164, 106, 0.44);
+      box-shadow: var(--shadow);
+      background: #e8d8c3;
+      position: relative;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      object-fit: cover;
+      object-position: center center;
+      filter: saturate(0.92) contrast(0.98) brightness(1.03);
+    }
+
+    .hero-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(44, 31, 24, 0.12), rgba(255, 246, 232, 0.22));
+      pointer-events: none;
+    }
+
+    .hero-card {
+      padding: clamp(32px, 5vw, 76px);
+      border-radius: 32px;
+      border: 1px solid rgba(199, 164, 106, 0.36);
+      background: linear-gradient(145deg, rgba(255, 250, 242, 0.86), rgba(255, 250, 242, 0.62));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      text-align: center;
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 22px;
+      color: var(--gold-dark);
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: "";
+      width: min(150px, 20vw);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .names {
+      margin: 0 0 26px;
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(48px, 5.6vw, 86px);
+      line-height: 1;
+      color: #6a4a32;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(50px, 7vw, 112px);
+      font-weight: 500;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: #2f2119;
+    }
+
+    h1 span {
+      display: block;
+      margin-top: 10px;
+      font-size: clamp(36px, 4.7vw, 70px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+
+    .script {
+      margin: 30px auto 8px;
+      max-width: 760px;
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(32px, 3.8vw, 54px);
+      line-height: 1.1;
+      color: #5b4031;
+    }
+
+    .date-line {
+      margin-top: 30px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(30px, 3.2vw, 48px);
+      color: #3c2b21;
+      letter-spacing: 0.02em;
+    }
+
     .date-line .dot { color: var(--gold-dark); padding: 0 16px; }
-    .countdown { display: grid; grid-template-columns: repeat(4, minmax(70px, 1fr)); gap: 10px; margin: 28px auto 0; max-width: 520px; }
-    .count-item { padding: 14px 10px; border: 1px solid rgba(199,164,106,.34); border-radius: 18px; background: rgba(255,250,242,.66); }
-    .count-number { display: block; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(30px, 3vw, 44px); line-height: 1; color: #3c2b21; }
-    .count-label { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
-    .buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 13px 24px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,250,242,.76); color: #3c2b21; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; transition: transform .25s ease, box-shadow .25s ease; cursor: pointer; }
-    .btn.primary { background: linear-gradient(135deg, #c7a46a, #9d7a42); color: white; box-shadow: 0 14px 28px rgba(146,103,49,.22); }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(62,45,34,.12); }
 
-    section { position: relative; z-index: 2; padding: clamp(64px, 8vw, 118px) 22px; }
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(70px, 1fr));
+      gap: 10px;
+      margin: 28px auto 0;
+      max-width: 520px;
+    }
+
+    .count-item {
+      padding: 14px 10px;
+      border: 1px solid rgba(199, 164, 106, 0.34);
+      border-radius: 18px;
+      background: rgba(255, 250, 242, 0.66);
+    }
+
+    .count-number {
+      display: block;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(30px, 3vw, 44px);
+      line-height: 1;
+      color: #3c2b21;
+    }
+
+    .count-label {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 250, 242, 0.76);
+      color: #3c2b21;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #c7a46a, #9d7a42);
+      color: white;
+      box-shadow: 0 14px 28px rgba(146, 103, 49, 0.22);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(62, 45, 34, 0.12);
+    }
+
+    section {
+      position: relative;
+      z-index: 2;
+      padding: clamp(64px, 8vw, 118px) 22px;
+    }
+
     .container { width: min(1120px, 92vw); margin: 0 auto; }
     .section-title { text-align: center; margin-bottom: 46px; }
-    .overline { margin-bottom: 8px; color: var(--gold-dark); font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
-    h2 { margin: 0; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(42px, 5.2vw, 76px); font-weight: 500; line-height: 1; }
 
-    .calendar-page { min-height: 100svh; display: grid; place-items: center; padding-top: clamp(64px, 8vw, 118px); padding-bottom: clamp(64px, 8vw, 118px); }
+    .overline {
+      margin-bottom: 8px;
+      color: var(--gold-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(42px, 5.2vw, 76px);
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .calendar-page {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding-top: clamp(64px, 8vw, 118px);
+      padding-bottom: clamp(64px, 8vw, 118px);
+    }
+
     .calendar-page-inner { width: min(820px, 92vw); text-align: center; }
     .calendar-note { max-width: 620px; margin: 18px auto 0; color: var(--muted); font-size: 17px; }
-    .calendar-card { width: min(420px, 100%); margin: 34px auto 0; padding: 24px; overflow: hidden; border-radius: 26px; border: 1px solid rgba(199,164,106,.42); background: rgba(255,250,242,.76); box-shadow: 0 16px 38px rgba(62,45,34,.1); }
-    .calendar-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; font-weight: 700; color: #2f2119; }
-    .calendar-title { font-size: 18px; }
-    .calendar-arrows { display: inline-flex; gap: 14px; color: rgba(62,45,34,.5); font-size: 16px; line-height: 1; }
-    .calendar-week, .calendar-days { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; gap: 8px 6px; }
-    .calendar-week { margin-bottom: 12px; font-size: 13px; font-weight: 700; color: #2f2119; }
-    .calendar-days span { display: grid; place-items: center; min-height: 34px; border-radius: 999px; font-size: 16px; color: #2f2119; }
-    .calendar-days .muted { color: rgba(62,45,34,.32); }
-    .calendar-days .active { background: linear-gradient(135deg, #c7a46a, #9d7a42); color: #fffaf2; box-shadow: 0 10px 22px rgba(146,103,49,.24); font-weight: 700; }
-    .calendar-caption { margin-top: 18px; color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 
-    .rsvp-box { border-radius: 34px; padding: clamp(34px, 5vw, 64px); background: linear-gradient(135deg, rgba(49,35,25,.78), rgba(101,74,43,.58)), url('assets/hotel-hilton-leningradskaya.jpg') center / cover no-repeat; color: var(--milk); box-shadow: var(--shadow); }
+    .calendar-card {
+      width: min(420px, 100%);
+      margin: 34px auto 0;
+      padding: 24px;
+      overflow: hidden;
+      border-radius: 26px;
+      border: 1px solid rgba(199, 164, 106, 0.42);
+      background: rgba(255, 250, 242, 0.76);
+      box-shadow: 0 16px 38px rgba(62, 45, 34, 0.1);
+    }
+
+    .calendar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+      font-weight: 700;
+      color: #2f2119;
+    }
+
+    .calendar-title { font-size: 18px; }
+    .calendar-arrows { display: inline-flex; gap: 14px; color: rgba(62, 45, 34, 0.5); font-size: 16px; line-height: 1; }
+
+    .calendar-week,
+    .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      gap: 8px 6px;
+    }
+
+    .calendar-week { margin-bottom: 12px; font-size: 13px; font-weight: 700; color: #2f2119; }
+
+    .calendar-days span {
+      display: grid;
+      place-items: center;
+      min-height: 34px;
+      border-radius: 999px;
+      font-size: 16px;
+      color: #2f2119;
+    }
+
+    .calendar-days .muted { color: rgba(62, 45, 34, 0.32); }
+
+    .calendar-days .active {
+      background: linear-gradient(135deg, #c7a46a, #9d7a42);
+      color: #fffaf2;
+      box-shadow: 0 10px 22px rgba(146, 103, 49, 0.24);
+      font-weight: 700;
+    }
+
+    .calendar-caption {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .rsvp-box {
+      border-radius: 34px;
+      padding: clamp(34px, 5vw, 64px);
+      background:
+        linear-gradient(135deg, rgba(49, 35, 25, 0.78), rgba(101, 74, 43, 0.58)),
+        url('assets/hotel-hilton-leningradskaya.jpg') center / cover no-repeat;
+      color: var(--milk);
+      box-shadow: var(--shadow);
+    }
+
     .rsvp-head { text-align: center; max-width: 760px; margin: 0 auto 34px; }
     .rsvp-head h2 { font-size: clamp(44px, 6vw, 86px); }
-    .menu-intro { max-width: 840px; margin: 0 auto 30px; text-align: center; color: rgba(255,250,242,.84); font-size: 17px; }
-    .survey { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 860px; margin: 0 auto; }
+
+    .menu-intro {
+      max-width: 840px;
+      margin: 0 auto 30px;
+      text-align: center;
+      color: rgba(255, 250, 242, 0.84);
+      font-size: 17px;
+    }
+
+    .survey {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
     .field { display: flex; flex-direction: column; gap: 8px; }
     .field.full, .question-block, .form-actions, .status { grid-column: 1 / -1; }
-    label:not(.choice) { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,250,242,.82); }
-    input, textarea { width: 100%; border: 1px solid rgba(255,250,242,.38); border-radius: 18px; padding: 14px 16px; background: rgba(255,250,242,.88); color: var(--brown); font: 500 15px Montserrat, Arial, sans-serif; outline: none; }
-    .question-block { padding: 22px; border: 1px solid rgba(255,250,242,.22); border-radius: 24px; background: rgba(255,250,242,.12); }
-    .question-title { margin: 0 0 8px; font-family: "Cormorant Garamond", Georgia, serif; font-size: 32px; line-height: 1.05; color: var(--milk); }
-    .question-help { margin: 0 0 18px; color: rgba(255,250,242,.78); font-size: 14px; }
-    .choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-    .choice { display: flex; align-items: flex-start; gap: 10px; min-height: 48px; padding: 13px 14px; border: 1px solid rgba(255,250,242,.28); border-radius: 16px; background: rgba(255,250,242,.82); color: var(--brown); font-size: 14px; font-weight: 500; cursor: pointer; }
+
+    label:not(.choice) {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 250, 242, 0.82);
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid rgba(255, 250, 242, 0.38);
+      border-radius: 18px;
+      padding: 14px 16px;
+      background: rgba(255, 250, 242, 0.88);
+      color: var(--brown);
+      font: 500 15px Montserrat, Arial, sans-serif;
+      outline: none;
+    }
+
+    .question-block {
+      padding: 22px;
+      border: 1px solid rgba(255, 250, 242, 0.22);
+      border-radius: 24px;
+      background: rgba(255, 250, 242, 0.12);
+    }
+
+    .question-title {
+      margin: 0 0 8px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 32px;
+      line-height: 1.05;
+      color: var(--milk);
+    }
+
+    .question-help { margin: 0 0 18px; color: rgba(255, 250, 242, 0.78); font-size: 14px; }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .choice {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-height: 48px;
+      padding: 13px 14px;
+      border: 1px solid rgba(255, 250, 242, 0.28);
+      border-radius: 16px;
+      background: rgba(255, 250, 242, 0.82);
+      color: var(--brown);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
     .choice input { width: auto; margin-top: 3px; accent-color: var(--gold-dark); }
     .choice span { display: block; }
     .other-row { margin-top: 12px; }
-    .form-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
-    .status { display: none; margin-top: 10px; padding: 16px 18px; border-radius: 18px; background: rgba(255,250,242,.16); border: 1px solid rgba(255,250,242,.24); color: rgba(255,250,242,.92); white-space: pre-line; }
-    .admin-panel { max-width: 860px; margin: 28px auto 0; padding: 24px; border: 1px solid rgba(255,250,242,.22); border-radius: 24px; background: rgba(255,250,242,.1); }
-    .admin-panel summary { cursor: pointer; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,250,242,.88); }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .status {
+      display: none;
+      margin-top: 10px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255, 250, 242, 0.16);
+      border: 1px solid rgba(255, 250, 242, 0.24);
+      color: rgba(255, 250, 242, 0.92);
+      white-space: pre-line;
+    }
+
+    .admin-panel {
+      max-width: 860px;
+      margin: 28px auto 0;
+      padding: 24px;
+      border: 1px solid rgba(255, 250, 242, 0.22);
+      border-radius: 24px;
+      background: rgba(255, 250, 242, 0.1);
+    }
+
+    .admin-panel summary {
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 250, 242, 0.88);
+    }
+
     .admin-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; margin-top: 18px; }
     .owner-actions { display: none; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
-    .owner-note { margin: 12px 0 0; color: rgba(255,250,242,.74); font-size: 13px; }
+    .owner-note { margin: 12px 0 0; color: rgba(255, 250, 242, 0.74); font-size: 13px; }
 
     .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
-    .card { min-height: 190px; padding: 28px; border: 1px solid rgba(199,164,106,.32); border-radius: 24px; background: rgba(255,250,242,.64); box-shadow: 0 18px 44px rgba(62,45,34,.08); }
-    .num { font-family: "Cormorant Garamond", Georgia, serif; font-size: 54px; line-height: 1; color: var(--gold-dark); }
-    .card h3, .event h3, .location-card h3 { font-family: "Cormorant Garamond", Georgia, serif; }
+
+    .card {
+      min-height: 190px;
+      padding: 28px;
+      border: 1px solid rgba(199, 164, 106, 0.32);
+      border-radius: 24px;
+      background: rgba(255, 250, 242, 0.64);
+      box-shadow: 0 18px 44px rgba(62, 45, 34, 0.08);
+    }
+
+    .num {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 54px;
+      line-height: 1;
+      color: var(--gold-dark);
+    }
+
+    .card h3,
+    .event h3,
+    .location-card h3 { font-family: "Cormorant Garamond", Georgia, serif; }
     .card h3 { margin: 16px 0 8px; font-size: 30px; font-weight: 600; }
-    .card p, .event p, .location-card p, .dress { color: var(--muted); }
-    .timeline { width: min(760px, 100%); margin: 0 auto; border-left: 1px solid var(--line); padding-left: 30px; }
+    .card p, .event p, .location-card p { color: var(--muted); }
+
+    .timeline {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      border-left: 1px solid var(--line);
+      padding-left: 30px;
+    }
+
     .event { position: relative; margin: 0 0 36px; padding-top: 2px; }
     .event:last-child { margin-bottom: 0; }
-    .event::before { content: ""; position: absolute; left: -38px; top: 10px; width: 14px; height: 14px; border-radius: 50%; background: var(--milk); border: 2px solid var(--gold); }
-    .event time { display: block; font-family: "Cormorant Garamond", Georgia, serif; font-size: 34px; color: var(--gold-dark); line-height: 1; }
+
+    .event::before {
+      content: "";
+      position: absolute;
+      left: -38px;
+      top: 10px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--milk);
+      border: 2px solid var(--gold);
+    }
+
+    .event time {
+      display: block;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 34px;
+      color: var(--gold-dark);
+      line-height: 1;
+    }
+
     .event h3 { margin: 8px 0 4px; font-size: 32px; font-weight: 600; }
     .event p { margin: 0; }
-    .dress { text-align: center; max-width: 820px; margin: 0 auto; font-size: 17px; }
-    .palette { display: flex; justify-content: center; gap: 14px; margin: 30px auto 0; flex-wrap: wrap; }
-    .swatch { width: 66px; height: 66px; border-radius: 50%; border: 6px solid rgba(255,250,242,.75); box-shadow: 0 12px 28px rgba(62,45,34,.12); }
-    .s1 { background: #f6ead8; } .s2 { background: #d6bd92; } .s3 { background: #9d7d56; } .s4 { background: #7d7162; } .s5 { background: #2e2520; }
-    .location-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
-    .location-card, .location-photo { min-height: 430px; border-radius: 28px; border: 1px solid rgba(199,164,106,.32); box-shadow: 0 18px 44px rgba(62,45,34,.08); overflow: hidden; }
-    .location-card { padding: clamp(28px, 4vw, 42px); background: rgba(255,250,242,.72); display: flex; flex-direction: column; justify-content: center; }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .location-card,
+    .location-photo {
+      min-height: 430px;
+      border-radius: 28px;
+      border: 1px solid rgba(199, 164, 106, 0.32);
+      box-shadow: 0 18px 44px rgba(62, 45, 34, 0.08);
+      overflow: hidden;
+    }
+
+    .location-card {
+      padding: clamp(28px, 4vw, 42px);
+      background: rgba(255, 250, 242, 0.72);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
     .location-card h3 { margin: 0 0 14px; font-size: 40px; line-height: 1; }
     .location-photo img { width: 100%; height: 100%; min-height: inherit; object-fit: cover; object-position: center center; }
-    footer { position: relative; z-index: 2; text-align: center; padding: 34px 22px 54px; color: var(--muted); font-size: 13px; }
+
+    footer {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 34px 22px 54px;
+      color: var(--muted);
+      font-size: 13px;
+    }
 
     @media (max-width: 980px) {
-      .hero-shell, .location-grid { grid-template-columns: 1fr; }
+      .hero-shell,
+      .location-grid { grid-template-columns: 1fr; }
       .hero-photo { min-height: 420px; }
       .hero-card { order: -1; }
-      .cards, .survey, .choice-grid { grid-template-columns: 1fr; }
+      .cards,
+      .survey,
+      .choice-grid { grid-template-columns: 1fr; }
       .field.full { grid-column: auto; }
       .admin-row { grid-template-columns: 1fr; }
     }
+
     @media (max-width: 560px) {
       .hero::before { inset: 10px; }
       .hero { padding: 16px; }
       .hero-card { padding: 30px 18px; border-radius: 22px; }
       .hero-photo { min-height: 340px; border-radius: 24px; }
-      .buttons, .form-actions { flex-direction: column; }
+      .buttons,
+      .form-actions { flex-direction: column; }
       .btn { width: 100%; }
       .countdown { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .date-line .dot { display: block; height: 8px; opacity: 0; }
@@ -157,18 +601,21 @@
         <div class="hero-photo" aria-label="Гостиница Хилтон Ленинградская">
           <img src="assets/hotel-hilton-leningradskaya.jpg" alt="Гостиница Хилтон Ленинградская" />
         </div>
+
         <div class="hero-card">
           <div class="ornament">♡</div>
           <p class="names">Константин &amp; Елизавета</p>
           <h1>Приглашение <span>на свадьбу</span></h1>
           <p class="script">Будем рады с вами разделить наш день</p>
           <div class="date-line">29.07 <span class="dot">•</span> Гостиница «Хилтон Ленинградская»</div>
+
           <div class="countdown" aria-label="Обратный отсчёт до свадьбы">
             <div class="count-item"><span class="count-number" id="countDays">0</span><span class="count-label">дней</span></div>
             <div class="count-item"><span class="count-number" id="countHours">0</span><span class="count-label">часов</span></div>
             <div class="count-item"><span class="count-number" id="countMinutes">0</span><span class="count-label">минут</span></div>
             <div class="count-item"><span class="count-number" id="countSeconds">0</span><span class="count-label">секунд</span></div>
           </div>
+
           <div class="buttons">
             <a class="btn primary" href="#rsvp">Подтвердить присутствие</a>
             <a class="btn" href="#calendar">Календарь</a>
@@ -185,9 +632,15 @@
           <h2>Дата свадьбы</h2>
         </div>
         <p class="calendar-note">Отметьте этот день в календаре: ждём вас 29 июля в 13:00.</p>
+
         <div class="calendar-card" aria-label="Календарь свадьбы">
-          <div class="calendar-head"><span class="calendar-title">Июль 2026</span><span class="calendar-arrows" aria-hidden="true">▲ ▼</span></div>
-          <div class="calendar-week" aria-hidden="true"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div>
+          <div class="calendar-head">
+            <span class="calendar-title">Июль 2026</span>
+            <span class="calendar-arrows" aria-hidden="true">▲ ▼</span>
+          </div>
+          <div class="calendar-week" aria-hidden="true">
+            <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
+          </div>
           <div class="calendar-days">
             <span class="muted">29</span><span class="muted">30</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
             <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span>
@@ -208,19 +661,27 @@
             <h2>Подтверждение присутствия</h2>
             <p class="menu-intro">Пожалуйста, заполните анкету до мероприятия. Так мы сможем точнее подготовить посадку, меню и напитки.</p>
           </div>
+
           <form class="survey" id="rsvpForm">
-            <div class="field full"><label for="guestName">Как вас зовут?</label><input id="guestName" name="guestName" type="text" placeholder="Введите имя и фамилию" required /></div>
+            <div class="field full">
+              <label for="guestName">Как вас зовут?</label>
+              <input id="guestName" name="guestName" type="text" placeholder="Введите имя и фамилию" required />
+            </div>
+
             <div class="question-block">
               <h3 class="question-title">Подтверждение присутствия</h3>
               <p class="question-help">Отметьте, пожалуйста, сможете ли вы быть с нами в этот день.</p>
               <div class="choice-grid">
-                <label class="choice"><input type="radio" name="attendance" value="С радостью буду" required><span>С радостью буду</span></label>
-                <label class="choice"><input type="radio" name="attendance" value="Буду с парой"><span>Буду с парой</span></label>
-                <label class="choice"><input type="radio" name="attendance" value="Пока не знаю"><span>Пока не знаю</span></label>
-                <label class="choice"><input type="radio" name="attendance" value="К сожалению, не смогу"><span>К сожалению, не смогу</span></label>
+                <label class="choice"><input type="radio" name="attendance" value="Да" required><span>Да</span></label>
+                <label class="choice"><input type="radio" name="attendance" value="Нет"><span>Нет</span></label>
               </div>
             </div>
-            <div class="question-block"><h3 class="question-title">Торжественное меню</h3><p class="question-help">Мы рады разделить с вами наше торжество. Чтобы сделать ваше пребывание максимально комфортным, выберите позиции из меню, которые предпочитаете.</p></div>
+
+            <div class="question-block">
+              <h3 class="question-title">Торжественное меню</h3>
+              <p class="question-help">Мы рады разделить с вами наше торжество. Чтобы сделать ваше пребывание максимально комфортным, выберите позиции из меню, которые предпочитаете.</p>
+            </div>
+
             <div class="question-block">
               <h3 class="question-title">Горячее</h3>
               <p class="question-help">Отметьте блюдо, которое предпочитаете. Если есть аллергия или особые пожелания, укажите это в поле ниже.</p>
@@ -228,53 +689,147 @@
                 <label class="choice"><input type="radio" name="hotDish" value="Филе-миньон на гриле (говядина) с маринованным баклажаном, шпинатом и шампиньонами" required><span>Филе-миньон на гриле (говядина) с маринованным баклажаном, шпинатом и шампиньонами</span></label>
                 <label class="choice"><input type="radio" name="hotDish" value="Запеченный лосось с картофельным пюре"><span>Запеченный лосось с картофельным пюре</span></label>
               </div>
-              <div class="other-row"><input id="hotDishOther" name="hotDishOther" type="text" placeholder="Аллергия / особые пожелания" /></div>
+              <div class="other-row">
+                <input id="hotDishOther" name="hotDishOther" type="text" placeholder="Аллергия / особые пожелания" />
+              </div>
             </div>
+
             <div class="question-block">
               <h3 class="question-title">Крепкие алкогольные напитки</h3>
               <div class="choice-grid">
-                <label class="choice"><input type="checkbox" name="strongAlcohol" value="Водка"><span>Водка</span></label><label class="choice"><input type="checkbox" name="strongAlcohol" value="Виски"><span>Виски</span></label><label class="choice"><input type="checkbox" name="strongAlcohol" value="Ром"><span>Ром</span></label><label class="choice"><input type="checkbox" name="strongAlcohol" value="Коньяк/Бренди"><span>Коньяк/Бренди</span></label><label class="choice"><input type="checkbox" name="strongAlcohol" value="Джин"><span>Джин</span></label><label class="choice"><input type="checkbox" name="strongAlcohol" value="Абсент"><span>Абсент</span></label><label class="choice"><input type="checkbox" name="strongAlcohol" value="Ничего"><span>Ничего</span></label>
+                <label class="choice"><input type="checkbox" name="strongAlcohol" value="Водка"><span>Водка</span></label>
+                <label class="choice"><input type="checkbox" name="strongAlcohol" value="Виски"><span>Виски</span></label>
+                <label class="choice"><input type="checkbox" name="strongAlcohol" value="Ром"><span>Ром</span></label>
+                <label class="choice"><input type="checkbox" name="strongAlcohol" value="Коньяк/Бренди"><span>Коньяк/Бренди</span></label>
+                <label class="choice"><input type="checkbox" name="strongAlcohol" value="Джин"><span>Джин</span></label>
+                <label class="choice"><input type="checkbox" name="strongAlcohol" value="Абсент"><span>Абсент</span></label>
+                <label class="choice"><input type="checkbox" name="strongAlcohol" value="Ничего"><span>Ничего</span></label>
               </div>
-              <div class="other-row"><input id="strongAlcoholOther" name="strongAlcoholOther" type="text" placeholder="Другое" /></div>
+              <div class="other-row">
+                <input id="strongAlcoholOther" name="strongAlcoholOther" type="text" placeholder="Другое" />
+              </div>
             </div>
+
             <div class="question-block">
               <h3 class="question-title">Слабоалкогольные напитки</h3>
               <div class="choice-grid">
-                <label class="choice"><input type="checkbox" name="lightAlcohol" value="Белое вино"><span>Белое вино</span></label><label class="choice"><input type="checkbox" name="lightAlcohol" value="Красное вино"><span>Красное вино</span></label><label class="choice"><input type="checkbox" name="lightAlcohol" value="Розовое вино"><span>Розовое вино</span></label><label class="choice"><input type="checkbox" name="lightAlcohol" value="Мартини"><span>Мартини</span></label><label class="choice"><input type="checkbox" name="lightAlcohol" value="Джин-тоник"><span>Джин-тоник</span></label><label class="choice"><input type="checkbox" name="lightAlcohol" value="Апероль"><span>Апероль</span></label><label class="choice"><input type="checkbox" name="lightAlcohol" value="Шампанское"><span>Шампанское</span></label><label class="choice"><input type="checkbox" name="lightAlcohol" value="Ничего"><span>Ничего</span></label>
+                <label class="choice"><input type="checkbox" name="lightAlcohol" value="Белое вино"><span>Белое вино</span></label>
+                <label class="choice"><input type="checkbox" name="lightAlcohol" value="Красное вино"><span>Красное вино</span></label>
+                <label class="choice"><input type="checkbox" name="lightAlcohol" value="Розовое вино"><span>Розовое вино</span></label>
+                <label class="choice"><input type="checkbox" name="lightAlcohol" value="Мартини"><span>Мартини</span></label>
+                <label class="choice"><input type="checkbox" name="lightAlcohol" value="Джин-тоник"><span>Джин-тоник</span></label>
+                <label class="choice"><input type="checkbox" name="lightAlcohol" value="Апероль"><span>Апероль</span></label>
+                <label class="choice"><input type="checkbox" name="lightAlcohol" value="Шампанское"><span>Шампанское</span></label>
+                <label class="choice"><input type="checkbox" name="lightAlcohol" value="Ничего"><span>Ничего</span></label>
               </div>
-              <div class="other-row"><input id="lightAlcoholOther" name="lightAlcoholOther" type="text" placeholder="Другое" /></div>
+              <div class="other-row">
+                <input id="lightAlcoholOther" name="lightAlcoholOther" type="text" placeholder="Другое" />
+              </div>
             </div>
+
             <div class="question-block">
               <h3 class="question-title">Неалкогольные напитки</h3>
               <div class="choice-grid">
-                <label class="choice"><input type="checkbox" name="softDrinks" value="Апельсиновый сок"><span>Апельсиновый сок</span></label><label class="choice"><input type="checkbox" name="softDrinks" value="Яблочный сок"><span>Яблочный сок</span></label><label class="choice"><input type="checkbox" name="softDrinks" value="Персиковый сок"><span>Персиковый сок</span></label><label class="choice"><input type="checkbox" name="softDrinks" value="Мультифрутовый сок"><span>Мультифрутовый сок</span></label><label class="choice"><input type="checkbox" name="softDrinks" value="Кола"><span>Кола</span></label><label class="choice"><input type="checkbox" name="softDrinks" value="Спрайт"><span>Спрайт</span></label><label class="choice"><input type="checkbox" name="softDrinks" value="Фанта"><span>Фанта</span></label>
+                <label class="choice"><input type="checkbox" name="softDrinks" value="Апельсиновый сок"><span>Апельсиновый сок</span></label>
+                <label class="choice"><input type="checkbox" name="softDrinks" value="Яблочный сок"><span>Яблочный сок</span></label>
+                <label class="choice"><input type="checkbox" name="softDrinks" value="Персиковый сок"><span>Персиковый сок</span></label>
+                <label class="choice"><input type="checkbox" name="softDrinks" value="Мультифрутовый сок"><span>Мультифрутовый сок</span></label>
+                <label class="choice"><input type="checkbox" name="softDrinks" value="Кола"><span>Кола</span></label>
+                <label class="choice"><input type="checkbox" name="softDrinks" value="Спрайт"><span>Спрайт</span></label>
+                <label class="choice"><input type="checkbox" name="softDrinks" value="Фанта"><span>Фанта</span></label>
               </div>
-              <div class="other-row"><input id="softDrinksOther" name="softDrinksOther" type="text" placeholder="Другое" /></div>
+              <div class="other-row">
+                <input id="softDrinksOther" name="softDrinksOther" type="text" placeholder="Другое" />
+              </div>
             </div>
-            <div class="form-actions"><button class="btn primary" type="submit">Отправить анкету</button></div>
+
+            <div class="form-actions">
+              <button class="btn primary" type="submit">Отправить анкету</button>
+            </div>
+
             <div class="status" id="formStatus"></div>
           </form>
+
           <details class="admin-panel" id="adminPanel">
             <summary>Панель организаторов</summary>
-            <p class="owner-note">GitHub Pages не может сам хранить ответы. Для реального сбора всех ответов нужен внешний endpoint. Когда он будет указан в FORM_ENDPOINT, ответы будут уходить туда; локальный CSV оставлен для теста.</p>
-            <div class="admin-row"><input id="ownerPassword" type="password" placeholder="Пароль организатора" autocomplete="current-password" /><button class="btn primary" type="button" id="unlockAdmin">Открыть</button></div>
-            <div class="owner-actions" id="ownerActions"><button class="btn primary" type="button" id="downloadAnswers">Скачать локальные ответы CSV</button><button class="btn" type="button" id="clearAnswers">Очистить локальные ответы</button></div>
+            <p class="owner-note">GitHub Pages не может сам хранить ответы. Для реального сбора всех ответов нужен внешний endpoint. Когда он указан в FORM_ENDPOINT, ответы уходят в Google Таблицу; локальный CSV оставлен для теста.</p>
+            <div class="admin-row">
+              <input id="ownerPassword" type="password" placeholder="Пароль организатора" autocomplete="current-password" />
+              <button class="btn primary" type="button" id="unlockAdmin">Открыть</button>
+            </div>
+            <div class="owner-actions" id="ownerActions">
+              <button class="btn primary" type="button" id="downloadAnswers">Скачать локальные ответы CSV</button>
+              <button class="btn" type="button" id="clearAnswers">Очистить локальные ответы</button>
+            </div>
           </details>
         </div>
       </div>
     </section>
 
-    <section id="details"><div class="container"><div class="section-title"><div class="overline">Wedding day</div><h2>Наш особенный день</h2></div><div class="cards"><article class="card"><div class="num">29</div><h3>Июля</h3><p>Пожалуйста, сохраните эту дату и проведите её вместе с нами.</p></article><article class="card"><div class="num">13:00</div><h3>Сбор гостей</h3><p>Ждём вас в бальном зале гостиницы.</p></article><article class="card"><div class="num">♡</div><h3>Москва</h3><p>Гостиница «Хилтон Ленинградская» — торжественная классика и вечерняя атмосфера.</p></article></div></div></section>
-    <section id="schedule"><div class="container"><div class="section-title"><div class="overline">Schedule</div><h2>Расписание</h2></div><div class="timeline"><div class="event"><time>13:00</time><h3>Сбор гостей</h3><p>В бальном зале гостиницы.</p></div><div class="event"><time>13:30</time><h3>Регистрация</h3><p>Торжественная часть и самые важные слова.</p></div><div class="event"><time>14:00</time><h3>Начало банкета</h3><p>Праздничный обед, поздравления и тёплая атмосфера.</p></div></div></div></section>
-    <section><div class="container"><div class="section-title"><div class="overline">Dress code</div><h2>Дресс-код</h2></div><p class="dress">Будем благодарны, если вы поддержите нежную палитру вечера: молочный, бежевый, песочный, тёплый коричневый, графитовый.</p><div class="palette" aria-label="Цветовая палитра"><span class="swatch s1"></span><span class="swatch s2"></span><span class="swatch s3"></span><span class="swatch s4"></span><span class="swatch s5"></span></div></div></section>
-    <section><div class="container location-grid"><div class="location-card"><div class="section-title" style="text-align:left;margin-bottom:22px;"><div class="overline">Location</div><h2>Место</h2></div><h3>Гостиница «Хилтон Ленинградская»</h3><p>Москва. Историческое здание, торжественная архитектура и красивая вечерняя атмосфера для нашего праздника.</p><a class="btn primary" href="https://yandex.ru/maps/?text=Гостиница%20Хилтон%20Ленинградская%20Москва" target="_blank" rel="noopener">Открыть карту</a></div><div class="location-photo"><img src="assets/hotel-hilton-leningradskaya.jpg" alt="Гостиница Хилтон Ленинградская" /></div></div></section>
+    <section id="details">
+      <div class="container">
+        <div class="section-title">
+          <div class="overline">Wedding day</div>
+          <h2>Наш особенный день</h2>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="num">29</div>
+            <h3>Июля</h3>
+            <p>Пожалуйста, сохраните эту дату и проведите её вместе с нами.</p>
+          </article>
+          <article class="card">
+            <div class="num">13:00</div>
+            <h3>Сбор гостей</h3>
+            <p>Ждём вас в бальном зале гостиницы.</p>
+          </article>
+          <article class="card">
+            <div class="num">♡</div>
+            <h3>Москва</h3>
+            <p>Гостиница «Хилтон Ленинградская» — торжественная классика и вечерняя атмосфера.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="schedule">
+      <div class="container">
+        <div class="section-title">
+          <div class="overline">Schedule</div>
+          <h2>Расписание</h2>
+        </div>
+        <div class="timeline">
+          <div class="event"><time>13:00</time><h3>Сбор гостей</h3><p>В бальном зале гостиницы.</p></div>
+          <div class="event"><time>13:30</time><h3>Регистрация</h3><p>Торжественная часть и самые важные слова.</p></div>
+          <div class="event"><time>14:00</time><h3>Начало банкета</h3><p>Праздничный обед, поздравления и тёплая атмосфера.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container location-grid">
+        <div class="location-card">
+          <div class="section-title" style="text-align:left;margin-bottom:22px;">
+            <div class="overline">Location</div>
+            <h2>Место</h2>
+          </div>
+          <h3>Гостиница «Хилтон Ленинградская»</h3>
+          <p>Москва. Историческое здание, торжественная архитектура и красивая вечерняя атмосфера для нашего праздника.</p>
+          <a class="btn primary" href="https://yandex.ru/maps/?text=Гостиница%20Хилтон%20Ленинградская%20Москва" target="_blank" rel="noopener">Открыть карту</a>
+        </div>
+        <div class="location-photo">
+          <img src="assets/hotel-hilton-leningradskaya.jpg" alt="Гостиница Хилтон Ленинградская" />
+        </div>
+      </div>
+    </section>
+
     <footer>Константин &amp; Елизавета · 29.07 · Гостиница «Хилтон Ленинградская»</footer>
   </div>
 
   <script>
     const WEDDING_DATE = new Date(2026, 6, 29, 13, 0, 0);
     const OWNER_PASSWORD = '2907';
-    const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzgFwcZM8YDGviA8b-B97DE0g4lz31_kxRJNL2pcNVLTQni01a3f7q-ffyP5vhbUJz1/exec'; // Сюда позже вставим endpoint для сбора ответов с GitHub Pages.
+    const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzgFwcZM8YDGviA8b-B97DE0g4lz31_kxRJNL2pcNVLTQni01a3f7q-ffyP5vhbUJz1/exec';
 
     const countDays = document.getElementById('countDays');
     const countHours = document.getElementById('countHours');
@@ -282,16 +837,31 @@
     const countSeconds = document.getElementById('countSeconds');
 
     function updateCountdown() {
-      const diff = WEDDING_DATE.getTime() - new Date().getTime();
+      if (!countDays || !countHours || !countMinutes || !countSeconds) return;
+
+      const now = new Date();
+      const diff = WEDDING_DATE.getTime() - now.getTime();
+
       if (diff <= 0) {
-        countDays.textContent = '0'; countHours.textContent = '00'; countMinutes.textContent = '00'; countSeconds.textContent = '00'; return;
+        countDays.textContent = '0';
+        countHours.textContent = '00';
+        countMinutes.textContent = '00';
+        countSeconds.textContent = '00';
+        return;
       }
+
       const totalSeconds = Math.floor(diff / 1000);
-      countDays.textContent = Math.floor(totalSeconds / 86400);
-      countHours.textContent = String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, '0');
-      countMinutes.textContent = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
-      countSeconds.textContent = String(totalSeconds % 60).padStart(2, '0');
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      countDays.textContent = days;
+      countHours.textContent = String(hours).padStart(2, '0');
+      countMinutes.textContent = String(minutes).padStart(2, '0');
+      countSeconds.textContent = String(seconds).padStart(2, '0');
     }
+
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
@@ -304,14 +874,28 @@
     const clearButton = document.getElementById('clearAnswers');
 
     function getAnswers() {
-      try { return JSON.parse(localStorage.getItem('wedding_menu_answers') || '[]'); }
-      catch (error) { return []; }
+      try {
+        return JSON.parse(localStorage.getItem('wedding_menu_answers') || '[]');
+      } catch (error) {
+        return [];
+      }
     }
-    function saveAnswers(answers) { localStorage.setItem('wedding_menu_answers', JSON.stringify(answers)); }
-    function checkedValues(name) { return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(input => input.value); }
-    function clean(value) { return String(value || '').trim(); }
+
+    function saveAnswers(answers) {
+      localStorage.setItem('wedding_menu_answers', JSON.stringify(answers));
+    }
+
+    function checkedValues(name) {
+      return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(input => input.value);
+    }
+
+    function clean(value) {
+      return String(value || '').trim();
+    }
+
     function buildPayload() {
       const formData = new FormData(form);
+
       return {
         createdAt: new Date().toLocaleString('ru-RU'),
         guestName: clean(formData.get('guestName')),
@@ -326,6 +910,7 @@
         softDrinksOther: clean(formData.get('softDrinksOther'))
       };
     }
+
     function answerText(data) {
       return [
         'Анкета свадебного приглашения',
@@ -335,28 +920,28 @@
         'Крепкий алкоголь: ' + (data.strongAlcohol || 'не выбрано') + (data.strongAlcoholOther ? ' — ' + data.strongAlcoholOther : ''),
         'Слабоалкогольные напитки: ' + (data.lightAlcohol || 'не выбрано') + (data.lightAlcoholOther ? ' — ' + data.lightAlcoholOther : ''),
         'Неалкогольные напитки: ' + (data.softDrinks || 'не выбрано') + (data.softDrinksOther ? ' — ' + data.softDrinksOther : '')
-      ].join('
-');
+      ].join('\n');
     }
+
     form.addEventListener('submit', async function(event) {
       event.preventDefault();
+
       const data = buildPayload();
       let sentRemote = false;
 
-	if (FORM_ENDPOINT && FORM_ENDPOINT !== 'PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
-	  try {
-		await fetch(FORM_ENDPOINT, {
-		  method: 'POST',
-		  mode: 'no-cors',
-		  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-		  body: JSON.stringify(data)
-		});
-
-		sentRemote = true;
-	  } catch (error) {
-		sentRemote = false;
-	  }
-	}
+      if (FORM_ENDPOINT) {
+        try {
+          await fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(data)
+          });
+          sentRemote = true;
+        } catch (error) {
+          sentRemote = false;
+        }
+      }
 
       const answers = getAnswers();
       answers.push(data);
@@ -364,32 +949,48 @@
 
       statusBox.style.display = 'block';
       statusBox.textContent = sentRemote
-        ? 'Спасибо! Анкета отправлена.
+        ? 'Спасибо! Анкета отправлена.\n\n' + answerText(data)
+        : 'Спасибо! Анкета сохранена локально. Проверьте подключение Google Apps Script.\n\n' + answerText(data);
 
-' + answerText(data)
-        : 'Спасибо! Анкета сохранена для теста. Для реального сбора всех ответов нужно подключить FORM_ENDPOINT.
-
-' + answerText(data);
       form.reset();
     });
+
     unlockButton.addEventListener('click', function() {
-      if (ownerPassword.value === OWNER_PASSWORD) { ownerActions.style.display = 'flex'; ownerPassword.value = ''; }
-      else { ownerActions.style.display = 'none'; alert('Неверный пароль'); }
+      if (ownerPassword.value === OWNER_PASSWORD) {
+        ownerActions.style.display = 'flex';
+        ownerPassword.value = '';
+      } else {
+        ownerActions.style.display = 'none';
+        alert('Неверный пароль');
+      }
     });
+
     downloadButton.addEventListener('click', function() {
       const answers = getAnswers();
-      if (!answers.length) { alert('Пока нет сохранённых локальных ответов.'); return; }
-      const headers = ['Дата','Имя','Присутствие','Горячее','Горячее пожелания','Крепкий алкоголь','Крепкий другое','Слабоалкогольные','Слабоалкогольные другое','Неалкогольные','Неалкогольные другое'];
-      const rows = answers.map(item => [item.createdAt,item.guestName,item.attendance,item.hotDish,item.hotDishOther,item.strongAlcohol,item.strongAlcoholOther,item.lightAlcohol,item.lightAlcoholOther,item.softDrinks,item.softDrinksOther]);
-      const csv = [headers, ...rows].map(row => row.map(value => '"' + String(value || '').replaceAll('"', '""') + '"').join(';')).join('
-');
-      const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+
+      if (!answers.length) {
+        alert('Пока нет сохранённых локальных ответов.');
+        return;
+      }
+
+      const headers = ['Дата', 'Имя', 'Присутствие', 'Горячее', 'Горячее пожелания', 'Крепкий алкоголь', 'Крепкий другое', 'Слабоалкогольные', 'Слабоалкогольные другое', 'Неалкогольные', 'Неалкогольные другое'];
+      const rows = answers.map(item => [item.createdAt, item.guestName, item.attendance, item.hotDish, item.hotDishOther, item.strongAlcohol, item.strongAlcoholOther, item.lightAlcohol, item.lightAlcoholOther, item.softDrinks, item.softDrinksOther]);
+      const csv = [headers, ...rows]
+        .map(row => row.map(value => '"' + String(value || '').replaceAll('"', '""') + '"').join(';'))
+        .join('\n');
+
+      const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
       const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob); link.download = 'wedding-menu-answers.csv'; link.click(); URL.revokeObjectURL(link.href);
+      link.href = URL.createObjectURL(blob);
+      link.download = 'wedding-menu-answers.csv';
+      link.click();
+      URL.revokeObjectURL(link.href);
     });
+
     clearButton.addEventListener('click', function() {
       if (!confirm('Точно удалить локальные ответы из этого браузера?')) return;
-      localStorage.removeItem('wedding_menu_answers'); alert('Локальные ответы удалены.');
+      localStorage.removeItem('wedding_menu_answers');
+      alert('Локальные ответы удалены.');
     });
   </script>
 </body>
