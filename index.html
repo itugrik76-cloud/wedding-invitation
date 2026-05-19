@@ -749,19 +749,6 @@
 
             <div class="status" id="formStatus"></div>
           </form>
-
-          <details class="admin-panel" id="adminPanel">
-            <summary>Панель организаторов</summary>
-            <p class="owner-note">GitHub Pages не может сам хранить ответы. Для реального сбора всех ответов нужен внешний endpoint. Когда он указан в FORM_ENDPOINT, ответы уходят в Google Таблицу; локальный CSV оставлен для теста.</p>
-            <div class="admin-row">
-              <input id="ownerPassword" type="password" placeholder="Пароль организатора" autocomplete="current-password" />
-              <button class="btn primary" type="button" id="unlockAdmin">Открыть</button>
-            </div>
-            <div class="owner-actions" id="ownerActions">
-              <button class="btn primary" type="button" id="downloadAnswers">Скачать локальные ответы CSV</button>
-              <button class="btn" type="button" id="clearAnswers">Очистить локальные ответы</button>
-            </div>
-          </details>
         </div>
       </div>
     </section>
@@ -828,7 +815,6 @@
 
   <script>
     const WEDDING_DATE = new Date(2026, 6, 29, 13, 0, 0);
-    const OWNER_PASSWORD = '2907';
     const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzgFwcZM8YDGviA8b-B97DE0g4lz31_kxRJNL2pcNVLTQni01a3f7q-ffyP5vhbUJz1/exec';
 
     const countDays = document.getElementById('countDays');
@@ -867,23 +853,6 @@
 
     const form = document.getElementById('rsvpForm');
     const statusBox = document.getElementById('formStatus');
-    const unlockButton = document.getElementById('unlockAdmin');
-    const ownerPassword = document.getElementById('ownerPassword');
-    const ownerActions = document.getElementById('ownerActions');
-    const downloadButton = document.getElementById('downloadAnswers');
-    const clearButton = document.getElementById('clearAnswers');
-
-    function getAnswers() {
-      try {
-        return JSON.parse(localStorage.getItem('wedding_menu_answers') || '[]');
-      } catch (error) {
-        return [];
-      }
-    }
-
-    function saveAnswers(answers) {
-      localStorage.setItem('wedding_menu_answers', JSON.stringify(answers));
-    }
 
     function checkedValues(name) {
       return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(input => input.value);
@@ -929,68 +898,24 @@
       const data = buildPayload();
       let sentRemote = false;
 
-      if (FORM_ENDPOINT) {
-        try {
-          await fetch(FORM_ENDPOINT, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify(data)
-          });
-          sentRemote = true;
-        } catch (error) {
-          sentRemote = false;
-        }
+      try {
+        await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(data)
+        });
+        sentRemote = true;
+      } catch (error) {
+        sentRemote = false;
       }
-
-      const answers = getAnswers();
-      answers.push(data);
-      saveAnswers(answers);
 
       statusBox.style.display = 'block';
       statusBox.textContent = sentRemote
         ? 'Спасибо! Анкета отправлена.\n\n' + answerText(data)
-        : 'Спасибо! Анкета сохранена локально. Проверьте подключение Google Apps Script.\n\n' + answerText(data);
+        : 'Анкета не отправилась. Попробуйте ещё раз или сообщите организаторам.\n\n' + answerText(data);
 
-      form.reset();
-    });
-
-    unlockButton.addEventListener('click', function() {
-      if (ownerPassword.value === OWNER_PASSWORD) {
-        ownerActions.style.display = 'flex';
-        ownerPassword.value = '';
-      } else {
-        ownerActions.style.display = 'none';
-        alert('Неверный пароль');
-      }
-    });
-
-    downloadButton.addEventListener('click', function() {
-      const answers = getAnswers();
-
-      if (!answers.length) {
-        alert('Пока нет сохранённых локальных ответов.');
-        return;
-      }
-
-      const headers = ['Дата', 'Имя', 'Присутствие', 'Горячее', 'Горячее пожелания', 'Крепкий алкоголь', 'Крепкий другое', 'Слабоалкогольные', 'Слабоалкогольные другое', 'Неалкогольные', 'Неалкогольные другое'];
-      const rows = answers.map(item => [item.createdAt, item.guestName, item.attendance, item.hotDish, item.hotDishOther, item.strongAlcohol, item.strongAlcoholOther, item.lightAlcohol, item.lightAlcoholOther, item.softDrinks, item.softDrinksOther]);
-      const csv = [headers, ...rows]
-        .map(row => row.map(value => '"' + String(value || '').replaceAll('"', '""') + '"').join(';'))
-        .join('\n');
-
-      const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'wedding-menu-answers.csv';
-      link.click();
-      URL.revokeObjectURL(link.href);
-    });
-
-    clearButton.addEventListener('click', function() {
-      if (!confirm('Точно удалить локальные ответы из этого браузера?')) return;
-      localStorage.removeItem('wedding_menu_answers');
-      alert('Локальные ответы удалены.');
+      if (sentRemote) form.reset();
     });
   </script>
 </body>
