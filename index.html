@@ -743,4 +743,83 @@
           </article>
           <article class="card">
             <div class="num">13:00</div>
-            <h3>С
+            <h3>Сбор гостей</h3>
+            <p>Ждём вас в бальном зале гостиницы.</p>
+          </article>
+          <article class="card">
+            <div class="num">♡</div>
+            <h3>Москва</h3>
+            <p>Гостиница «Хилтон Ленинградская» — торжественная классика и вечерняя атмосфера.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container location-grid">
+        <div class="location-card">
+          <div class="section-title" style="text-align:left;margin-bottom:22px;">
+            <div class="overline">Location</div>
+            <h2>Место</h2>
+          </div>
+          <h3>Гостиница «Хилтон Ленинградская»</h3>
+          <p>Москва. Историческое здание, торжественная архитектура и красивая вечерняя атмосфера для нашего праздника.</p>
+          <a class="btn primary" href="https://yandex.ru/maps/?text=Гостиница%20Хилтон%20Ленинградская%20Москва" target="_blank" rel="noopener">Открыть карту</a>
+        </div>
+        <div class="location-photo">
+          <img src="assets/hotel-hilton-leningradskaya.jpg" alt="Гостиница Хилтон Ленинградская" />
+        </div>
+      </div>
+    </section>
+
+    <footer>Константин Елизавета · Гостиница «Хилтон Ленинградская»</footer>
+  </div>
+
+  <script>
+    const WEDDING_DATE = new Date(2026, 6, 29, 13, 0, 0);
+
+    const countDays = document.getElementById('countDays');
+    const countHours = document.getElementById('countHours');
+    const countMinutes = document.getElementById('countMinutes');
+    const countSeconds = document.getElementById('countSeconds');
+
+    function updateCountdown() {
+      if (!countDays || !countHours || !countMinutes || !countSeconds) return;
+
+      const diff = WEDDING_DATE.getTime() - new Date().getTime();
+
+      if (diff <= 0) {
+        countDays.textContent = '0';
+        countHours.textContent = '00';
+        countMinutes.textContent = '00';
+        countSeconds.textContent = '00';
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff / 1000);
+      countDays.textContent = Math.floor(totalSeconds / 86400);
+      countHours.textContent = String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, '0');
+      countMinutes.textContent = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+      countSeconds.textContent = String(totalSeconds % 60).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const form = document.getElementById('rsvpForm');
+    const statusBox = document.getElementById('formStatus');
+    const createdAtInput = document.getElementById('createdAt');
+
+    form.addEventListener('submit', function() {
+      createdAtInput.value = new Date().toLocaleString('ru-RU');
+      statusBox.style.display = 'block';
+      statusBox.textContent = 'Отправляем анкету...';
+
+      setTimeout(function() {
+        statusBox.textContent = 'Спасибо! Анкета отправлена. Если вы хотите изменить ответ, заполните форму ещё раз.';
+        form.reset();
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
