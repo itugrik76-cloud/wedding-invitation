@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Константин & Елизавета — свадебное приглашение</title>
+  <title>Константин Елизавета — свадебное приглашение</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -127,11 +127,22 @@
     }
 
     .names {
-      margin: 0 0 26px;
+      margin: 0 0 16px;
       font-family: "Great Vibes", cursive;
       font-size: clamp(48px, 5.6vw, 86px);
       line-height: 1;
       color: #6a4a32;
+    }
+
+    .wedding-date-hero {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(28px, 3.4vw, 44px);
+      color: var(--gold-dark);
+      letter-spacing: 0.02em;
+      margin-top: 10px;
+      border-top: 1px solid rgba(199, 164, 106, 0.4);
+      display: inline-block;
+      padding-top: 12px;
     }
 
     h1 {
@@ -569,7 +580,8 @@
 
         <div class="hero-card">
           <div class="ornament">♡</div>
-          <p class="names">Константин &amp; Елизавета</p>
+          <p class="names">Константин Елизавета</p>
+          <div class="wedding-date-hero">29 июля 2026</div>
           <h1>Приглашение <span>на свадьбу</span></h1>
           <p class="script">Будем рады разделить с вами этот день</p>
           <div class="date-line">Гостиница «Хилтон Ленинградская»</div>
@@ -731,83 +743,4 @@
           </article>
           <article class="card">
             <div class="num">13:00</div>
-            <h3>Сбор гостей</h3>
-            <p>Ждём вас в бальном зале гостиницы.</p>
-          </article>
-          <article class="card">
-            <div class="num">♡</div>
-            <h3>Москва</h3>
-            <p>Гостиница «Хилтон Ленинградская» — торжественная классика и вечерняя атмосфера.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container location-grid">
-        <div class="location-card">
-          <div class="section-title" style="text-align:left;margin-bottom:22px;">
-            <div class="overline">Location</div>
-            <h2>Место</h2>
-          </div>
-          <h3>Гостиница «Хилтон Ленинградская»</h3>
-          <p>Москва. Историческое здание, торжественная архитектура и красивая вечерняя атмосфера для нашего праздника.</p>
-          <a class="btn primary" href="https://yandex.ru/maps/?text=Гостиница%20Хилтон%20Ленинградская%20Москва" target="_blank" rel="noopener">Открыть карту</a>
-        </div>
-        <div class="location-photo">
-          <img src="assets/hotel-hilton-leningradskaya.jpg" alt="Гостиница Хилтон Ленинградская" />
-        </div>
-      </div>
-    </section>
-
-    <footer>Константин &amp; Елизавета · Гостиница «Хилтон Ленинградская»</footer>
-  </div>
-
-  <script>
-    const WEDDING_DATE = new Date(2026, 6, 29, 13, 0, 0);
-
-    const countDays = document.getElementById('countDays');
-    const countHours = document.getElementById('countHours');
-    const countMinutes = document.getElementById('countMinutes');
-    const countSeconds = document.getElementById('countSeconds');
-
-    function updateCountdown() {
-      if (!countDays || !countHours || !countMinutes || !countSeconds) return;
-
-      const diff = WEDDING_DATE.getTime() - new Date().getTime();
-
-      if (diff <= 0) {
-        countDays.textContent = '0';
-        countHours.textContent = '00';
-        countMinutes.textContent = '00';
-        countSeconds.textContent = '00';
-        return;
-      }
-
-      const totalSeconds = Math.floor(diff / 1000);
-      countDays.textContent = Math.floor(totalSeconds / 86400);
-      countHours.textContent = String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, '0');
-      countMinutes.textContent = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
-      countSeconds.textContent = String(totalSeconds % 60).padStart(2, '0');
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    const form = document.getElementById('rsvpForm');
-    const statusBox = document.getElementById('formStatus');
-    const createdAtInput = document.getElementById('createdAt');
-
-    form.addEventListener('submit', function() {
-      createdAtInput.value = new Date().toLocaleString('ru-RU');
-      statusBox.style.display = 'block';
-      statusBox.textContent = 'Отправляем анкету...';
-
-      setTimeout(function() {
-        statusBox.textContent = 'Спасибо! Анкета отправлена. Если вы хотите изменить ответ, заполните форму ещё раз.';
-        form.reset();
-      }, 1200);
-    });
-  </script>
-</body>
-</html>
+            <h3>С
