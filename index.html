@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Константин и Елизавета — приглашение на свадьбу</title>
+  <title>Константин & Елизавета — свадебное приглашение</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -496,39 +496,6 @@
     .card h3 { margin: 16px 0 8px; font-size: 30px; font-weight: 600; }
     .card p, .event p, .location-card p { color: var(--muted); }
 
-    .timeline {
-      width: min(760px, 100%);
-      margin: 0 auto;
-      border-left: 1px solid var(--line);
-      padding-left: 30px;
-    }
-
-    .event { position: relative; margin: 0 0 36px; padding-top: 2px; }
-    .event:last-child { margin-bottom: 0; }
-
-    .event::before {
-      content: "";
-      position: absolute;
-      left: -38px;
-      top: 10px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--milk);
-      border: 2px solid var(--gold);
-    }
-
-    .event time {
-      display: block;
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 34px;
-      color: var(--gold-dark);
-      line-height: 1;
-    }
-
-    .event h3 { margin: 8px 0 4px; font-size: 32px; font-weight: 600; }
-    .event p { margin: 0; }
-
     .location-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -587,8 +554,6 @@
       .btn { width: 100%; }
       .countdown { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .date-line .dot { display: block; height: 8px; opacity: 0; }
-      .timeline { padding-left: 22px; }
-      .event::before { left: -30px; }
     }
   </style>
 </head>
@@ -606,8 +571,8 @@
           <div class="ornament">♡</div>
           <p class="names">Константин &amp; Елизавета</p>
           <h1>Приглашение <span>на свадьбу</span></h1>
-          <p class="script">Будем рады с вами разделить наш день</p>
-          <div class="date-line">29.07 <span class="dot">•</span> Гостиница «Хилтон Ленинградская»</div>
+          <p class="script">Будем рады разделить с вами этот день</p>
+          <div class="date-line">Гостиница «Хилтон Ленинградская»</div>
 
           <div class="countdown" aria-label="Обратный отсчёт до свадьбы">
             <div class="count-item"><span class="count-number" id="countDays">0</span><span class="count-label">дней</span></div>
@@ -619,7 +584,6 @@
           <div class="buttons">
             <a class="btn primary" href="#rsvp">Подтвердить присутствие</a>
             <a class="btn" href="#calendar">Календарь</a>
-            <a class="btn" href="#schedule">Детали дня</a>
           </div>
         </div>
       </div>
@@ -631,7 +595,7 @@
           <div class="overline">Save the date</div>
           <h2>Дата свадьбы</h2>
         </div>
-        <p class="calendar-note">Отметьте этот день в календаре: ждём вас 29 июля в 13:00.</p>
+        <p class="calendar-note">Отметьте этот день в календаре: ждём вас в июле 2026 года в 13:00.</p>
 
         <div class="calendar-card" aria-label="Календарь свадьбы">
           <div class="calendar-head">
@@ -716,7 +680,6 @@
               <div class="choice-grid">
                 <label class="choice"><input type="checkbox" name="lightAlcohol" value="Белое вино"><span>Белое вино</span></label>
                 <label class="choice"><input type="checkbox" name="lightAlcohol" value="Красное вино"><span>Красное вино</span></label>
-                <label class="choice"><input type="checkbox" name="lightAlcohol" value="Розовое вино"><span>Розовое вино</span></label>
                 <label class="choice"><input type="checkbox" name="lightAlcohol" value="Мартини"><span>Мартини</span></label>
                 <label class="choice"><input type="checkbox" name="lightAlcohol" value="Джин-тоник"><span>Джин-тоник</span></label>
                 <label class="choice"><input type="checkbox" name="lightAlcohol" value="Апероль"><span>Апероль</span></label>
@@ -733,7 +696,6 @@
               <div class="choice-grid">
                 <label class="choice"><input type="checkbox" name="softDrinks" value="Апельсиновый сок"><span>Апельсиновый сок</span></label>
                 <label class="choice"><input type="checkbox" name="softDrinks" value="Яблочный сок"><span>Яблочный сок</span></label>
-                <label class="choice"><input type="checkbox" name="softDrinks" value="Персиковый сок"><span>Персиковый сок</span></label>
                 <label class="choice"><input type="checkbox" name="softDrinks" value="Мультифрутовый сок"><span>Мультифрутовый сок</span></label>
                 <label class="choice"><input type="checkbox" name="softDrinks" value="Кола"><span>Кола</span></label>
                 <label class="choice"><input type="checkbox" name="softDrinks" value="Спрайт"><span>Спрайт</span></label>
@@ -763,8 +725,8 @@
         </div>
         <div class="cards">
           <article class="card">
-            <div class="num">29</div>
-            <h3>Июля</h3>
+            <div class="num">♡</div>
+            <h3>Июль</h3>
             <p>Пожалуйста, сохраните эту дату и проведите её вместе с нами.</p>
           </article>
           <article class="card">
@@ -777,20 +739,6 @@
             <h3>Москва</h3>
             <p>Гостиница «Хилтон Ленинградская» — торжественная классика и вечерняя атмосфера.</p>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="schedule">
-      <div class="container">
-        <div class="section-title">
-          <div class="overline">Schedule</div>
-          <h2>Расписание</h2>
-        </div>
-        <div class="timeline">
-          <div class="event"><time>13:00</time><h3>Сбор гостей</h3><p>В бальном зале гостиницы.</p></div>
-          <div class="event"><time>13:30</time><h3>Регистрация</h3><p>Торжественная часть и самые важные слова.</p></div>
-          <div class="event"><time>14:00</time><h3>Начало банкета</h3><p>Праздничный обед, поздравления и тёплая атмосфера.</p></div>
         </div>
       </div>
     </section>
@@ -812,7 +760,7 @@
       </div>
     </section>
 
-    <footer>Константин &amp; Елизавета · 29.07 · Гостиница «Хилтон Ленинградская»</footer>
+    <footer>Константин &amp; Елизавета · Гостиница «Хилтон Ленинградская»</footer>
   </div>
 
   <script>
