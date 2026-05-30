@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=6yPLmf2JXRL9hexIs5exiPMmQ3Pg66qSJjGFbi1EwELXxoDZU81-Xpc2VjZLnCdkYMF97QGDsywEzYCkVOZj3hZZISaerSQ5aq6Pwv6VY2H21SQyGLe1Bka7I9U2IOPYC5wpsLwoDmB4vzYAElhMw8qI94spu5sbHNPpuVqKRWiWrzynE5rlJneATNNjC_M4G8uFrnRTVa8TWcw4NuYQD9D2bVaSUucAP5ZDe9Evgv7kvZmtJuJRHSunsyYhWQJI8q8xsNrtsDPgTKEUsSH51SrlxKbs1iPUS2b-pN2yGhb7Sa3PyjpGakUv_PB7hfpHozuSLhmrgD74ar2XWG4wGQ" charset="UTF-8"></script><style>
     :root {
       --cream: #f7efe3;
       --milk: #fffaf2;
@@ -350,6 +350,27 @@
       text-transform: uppercase;
     }
 
+    .calendar-event-strip {
+      position: relative;
+      z-index: 2;
+      width: min(420px, 92vw);
+      margin: clamp(-42px, -4vw, -26px) auto clamp(48px, 6vw, 80px);
+      text-align: center;
+    }
+
+    .calendar-event-strip span {
+      display: inline-block;
+      padding: 14px 34px;
+      border: 1px solid rgba(199, 164, 106, 0.42);
+      border-radius: 999px;
+      background: rgba(255, 250, 242, 0.76);
+      box-shadow: 0 16px 38px rgba(62, 45, 34, 0.1);
+      color: var(--gold-dark);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1;
+    }
+
     .rsvp-box {
       border-radius: 34px;
       padding: clamp(34px, 5vw, 64px);
@@ -624,10 +645,11 @@
             <span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span>
             <span>27</span><span>28</span><span class="active">29</span><span>30</span><span>31</span><span class="muted">1</span><span class="muted">2</span>
           </div>
-          <div class="calendar-caption">Свадьба · 13:00</div>
         </div>
       </div>
     </section>
+
+    <div class="calendar-event-strip" aria-label="Время свадьбы"><span>Свадьба 13:00</span></div>
 
     <section id="rsvp">
       <div class="container">
@@ -678,8 +700,6 @@
                 <label class="choice"><input type="checkbox" name="strongAlcohol" value="Виски"><span>Виски</span></label>
                 <label class="choice"><input type="checkbox" name="strongAlcohol" value="Ром"><span>Ром</span></label>
                 <label class="choice"><input type="checkbox" name="strongAlcohol" value="Коньяк/Бренди"><span>Коньяк/Бренди</span></label>
-                <label class="choice"><input type="checkbox" name="strongAlcohol" value="Джин"><span>Джин</span></label>
-                <label class="choice"><input type="checkbox" name="strongAlcohol" value="Абсент"><span>Абсент</span></label>
                 <label class="choice"><input type="checkbox" name="strongAlcohol" value="Ничего"><span>Ничего</span></label>
               </div>
               <div class="other-row">
@@ -693,8 +713,6 @@
                 <label class="choice"><input type="checkbox" name="lightAlcohol" value="Белое вино"><span>Белое вино</span></label>
                 <label class="choice"><input type="checkbox" name="lightAlcohol" value="Красное вино"><span>Красное вино</span></label>
                 <label class="choice"><input type="checkbox" name="lightAlcohol" value="Мартини"><span>Мартини</span></label>
-                <label class="choice"><input type="checkbox" name="lightAlcohol" value="Джин-тоник"><span>Джин-тоник</span></label>
-                <label class="choice"><input type="checkbox" name="lightAlcohol" value="Апероль"><span>Апероль</span></label>
                 <label class="choice"><input type="checkbox" name="lightAlcohol" value="Шампанское"><span>Шампанское</span></label>
                 <label class="choice"><input type="checkbox" name="lightAlcohol" value="Ничего"><span>Ничего</span></label>
               </div>
@@ -763,8 +781,9 @@
             <h2>Место</h2>
           </div>
           <h3>Гостиница «Хилтон Ленинградская»</h3>
-          <p>Москва. Историческое здание, торжественная архитектура и красивая вечерняя атмосфера для нашего праздника.</p>
-          <a class="btn primary" href="https://yandex.ru/maps/?text=Гостиница%20Хилтон%20Ленинградская%20Москва" target="_blank" rel="noopener">Открыть карту</a>
+          <p><strong>Адрес:</strong> Москва, ул. Каланчёвская, д. 21/40, 107078.</p>
+          <p>Историческое здание, торжественная архитектура и красивая вечерняя атмосфера для нашего праздника.</p>
+          <a class="btn primary" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Каланчёвская%2C%20д.%2021%2F40" target="_blank" rel="noopener">Открыть карту</a>
         </div>
         <div class="location-photo">
           <img src="assets/hotel-hilton-leningradskaya.jpg" alt="Гостиница Хилтон Ленинградская" />
